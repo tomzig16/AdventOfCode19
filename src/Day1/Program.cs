@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,14 @@ namespace Day1
     {
         static void Main(string[] args)
         {
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-            Console.WriteLine("Hello World!");
+            string[] lines = File.ReadAllLines("..\\..\\input\\input.txt", Encoding.UTF8);
+            int sum = 0;
+            foreach(string line in lines)
+            {
+                sum += Convert.ToInt32(int.Parse(line) / 3) - 2;
+            }
+            Console.WriteLine(sum);
             Console.ReadKey();
-
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
         }
     }
 }
