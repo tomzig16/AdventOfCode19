@@ -56,6 +56,20 @@ namespace Day3
                 }
             }
             Console.WriteLine($"Result: {closestPosition.GetAbsVal().x + closestPosition.GetAbsVal().y}");
+            Console.WriteLine("Part 2");
+
+            int[] stepsForFirstWire = GetNumberOfSteps(sameEntries.ToList(), firstWirePositions);
+            int[] stepsForSecondtWire = GetNumberOfSteps(sameEntries.ToList(), secondWirePositions);
+
+            int[] sum = new int[stepsForFirstWire.Length];
+
+            for(int i = 0; i < stepsForFirstWire.Length; i++)
+            {
+                sum[i] = stepsForFirstWire[i] + stepsForSecondtWire[i];
+            }
+
+            Console.WriteLine($"Result: {sum.Min()}");
+
             Console.ReadKey();
         }
 
@@ -90,6 +104,23 @@ namespace Day3
             }
 
             return result;
+        }
+
+        static int[] GetNumberOfSteps(List<Position> intersections, List<Position> wirePositions)
+        {
+            int[] steps = new int[intersections.Count];
+            int stepsCounter = 1;
+            foreach (Position wirePos in wirePositions)
+            {
+                int index = intersections.IndexOf(wirePos);
+                if(index >= 0)
+                {
+                    steps[index] = stepsCounter;
+                }
+                stepsCounter++;
+            }
+
+            return steps;
         }
     }
 }
